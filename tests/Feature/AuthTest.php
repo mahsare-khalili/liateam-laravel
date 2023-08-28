@@ -37,12 +37,12 @@ class AuthTest extends TestCase
      */
     public function testLogin()
     {
-        //Create user
-        User::create([
+        User::factory()->create([
             'name' => 'test',
             'email'=>'test@gmail.com',
             'password' => Hash::make('secret1234')
         ]);
+        
         //attempt login
         $response = $this->json('POST',route('api.login'),[
             'email' => 'test@gmail.com',
@@ -61,12 +61,12 @@ class AuthTest extends TestCase
      */
     public function testLoginHasErrorWithInvalidInfo()
     {
-        //Create user
-        User::create([
+        User::factory()->create([
             'name' => 'test',
             'email'=>'test@gmail.com',
             'password' => Hash::make('secret1234')
         ]);
+        
         //attempt login
         $response = $this->json('POST',route('api.login'),[
             'email' => 'test@gmail.com',
